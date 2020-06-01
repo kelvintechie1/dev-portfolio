@@ -2,6 +2,7 @@
 # Written by: Kelvin Tran - May 30th, 2020 (Prefix 933)
 # DISCLAIMER: This script is being provided as-is with no guarantee of functionality, availability, or support of any kind.
 # NOTE: For debugging, you can disable the bare exceptions (except: ...) - identified in the error message (Format: <method> Bare Exception <#>)
+# NOTE: Be sure to modify the variables in the main method (at bottom of script) - instructions in comments in the main method.
 
 import json, sys, argparse
 
