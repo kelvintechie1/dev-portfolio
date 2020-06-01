@@ -259,7 +259,7 @@ def main(args):
 
     type = "Note"  # If there is a custom type, please change the value of the variable below. (Default: Note)
 
-    importFromFile = True  # If you are importing from a JSON file, mark the following field True (default: False, interactive mode)
+    importFromFile = False  # If you are importing from a JSON file, mark the following field True (default: False, interactive mode)
     # for debug purposes ONLY, set to "debug" as string to bypass the conditional statement block.
 
     if importFromFile == True:  # Users of interactive mode don't need to provide arguments; only initialize argparse if the user has set the flag for importFromFile to True
