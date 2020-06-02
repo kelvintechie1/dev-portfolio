@@ -220,7 +220,7 @@ def WriteToFile(jsonData, file, type, data, fields, flags, guid, nmuuid, numCard
     backup = jsonData
 
     # Create backup file with the original file name of the deck + ".backup.json" and dump a pretty version of the original JSON data - truncate file if it already exists and overwrite
-    with open((file + ".backup.json"), "w") as backupFile:
+    with open((backupName := file + ".backup.json"), "w") as backupFile:
         json.dump(backup, backupFile, indent=2)
 
     index = 0  # Use as counter in while loop below
@@ -235,6 +235,7 @@ def WriteToFile(jsonData, file, type, data, fields, flags, guid, nmuuid, numCard
 
     with open(file, "w") as stream:  # Open file in writing mode (truncate file if it exists)
         json.dump(jsonData, stream, indent=2)  # Dump the new jsonData (with new cards appended) with an indent value of 2 to align with original indent design - pretty output
+        print("JSON data has been successfully exported to the file " + str(file) + ". A backup file has been created in the same folder with the name of " + str(backupName) + " to protect against program failures.")  # Confirmation message
 
 
 def main(args):
