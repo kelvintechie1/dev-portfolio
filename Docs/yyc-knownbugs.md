@@ -1,4 +1,4 @@
-**Confirmed Bugs**:
+**Confirmed Bugs**:  
 No confirmed bugs as of yet.
 
 **Suspected Bugs**:
