@@ -38,7 +38,9 @@ def GenerateIPv4Prefixes(number):
             otherOctets.append(value)
             octet += 1
         prefixLength = str(random.randint(1, 32))
-        prefixes.append(str(ipaddress.IPv4Network(address := (firstOctet + otherOctets[0] + otherOctets[1] + otherOctets[2] + "/" + prefixLength), strict=False)) + " - Host Address: " + address)
+        prefixes.append(str(ipaddress.IPv4Network(address := (firstOctet + otherOctets[0] + otherOctets[1] \
+            + otherOctets[2] + "/" + prefixLength), strict=False)) \
+            + " - Host Address: " + address)
         counter += 1
     return prefixes
 
