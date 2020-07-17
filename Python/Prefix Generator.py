@@ -10,17 +10,19 @@ import random
 import argparse
 import csv
 import io
+import re
 
 # User inputs number of prefixes
 def inputPrefixNum():
-    prefixNum = 0
     successful = False
     while not successful:
         try:
-            prefixNum = int(input("How many prefixes do you want to generate? "))
+            prefixNum = []
+            prefixNum.append(int(input("How many IPv4 prefixes do you want to generate? ")))
+            prefixNum.append(int(input("How many IPv6 prefixes do you want to generate? ")))
             successful = True
         except (ValueError,TypeError):
-            print("Please enter a valid number.")
+            print("Please enter a valid number - integers only.")
             continue
     return prefixNum
 
@@ -44,9 +46,15 @@ def GenerateIPv4Prefixes(number):
         counter += 1
     return prefixes
 
+def GenerateIPv6Prefixes(number):
+    print("Feature coming soon.")
+    # Add global unicast (2000::/3) or unique local (fc00::/7)
+    
+
+
 def main():
     prefixNum = inputPrefixNum()
-    for item in enumerate(prefixes := (GenerateIPv4Prefixes(prefixNum))):
+    for item in enumerate(prefixes := (GenerateIPv4Prefixes(prefixNum[0]))):
         print(prefixes[item[0]])
 
 if __name__ == "__main__":
