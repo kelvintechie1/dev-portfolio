@@ -11,6 +11,7 @@ import argparse
 import csv
 import io
 import re
+from tabulate import tabulate
 
 # User inputs number of prefixes
 def inputPrefixNum():
@@ -31,26 +32,43 @@ def inputOtherCriteria():
 
 def GenerateIPv4Prefixes(number):
     counter = 0
-    prefixes = []
+    returnOutput = []
+
     while counter < number:
+
         firstOctet = (str(random.randint(1, 223)) + ".")
         otherOctets = []
         octet = 1
+
         while octet < 4:
             value = str(random.randint(1,255))
             if octet < 3:
                 value = value + "."
             otherOctets.append(value)
             octet += 1
-        prefixLength = str(random.randint(1, 32))
-        prefixes.append(str(ipaddress.IPv4Network(address := (firstOctet + otherOctets[0] + otherOctets[1]
-            + otherOctets[2] + "/" + prefixLength), strict=False))
-            + " - Host Address: " + address)
+
+        prefixLength = str(random.randint(1, 32))   
+
+        outputAppend = []
+
+        outputAppend.append(str(prefix := (ipaddress.IPv4Network((address := firstOctet + otherOctets[0] 
+            + otherOctets[1] + otherOctets[2]) + "/" + prefixLength, strict=False))))
+        outputAppend.append(str(prefix.netmask))
+        outputAppend.append(str(address))
+        returnOutput.append(outputAppend)
+
         counter += 1
-    return prefixes
+
+    return returnOutput
 
 def GenerateIPv6Prefixes(number):
+    # NOTE: This script assumes the validity of the IETF-estabished IPv6 unicast address assignments table 
+    # found here: https://www.iana.org/assignments/ipv6-unicast-address-assignments/ipv6-unicast-address-assignments.xhtml
+    # and therefore uses the 2000::/15 address block for address generation to avoid interfering with any reserved blocks.
+
     print("Placeholder")
+
+
     # Add global unicast (2000::/3) or unique local (fc00::/7)
     
 def GenerateConfiguration():
@@ -58,8 +76,14 @@ def GenerateConfiguration():
 
 def main():
     prefixNum = inputPrefixNum()
-    for item in enumerate(prefixes := (GenerateIPv4Prefixes(prefixNum[0]))):
-        print(prefixes[item[0]])
+    counterIPv4 = 0
+    #for item in enumerate(output := (GenerateIPv4Prefixes(prefixNum[0]))):
+    #   print(tabulate(output[item[0]]))
+
+    output = (GenerateIPv4Prefixes(prefixNum[0]))
+    print("\n")
+    print("IPv4 Networks: \n")
+    print(tabulate(output, headers=["Network Prefix", "Subnet Mask", "Host Address"]))
 
 
 if __name__ == "__main__":

@@ -10,6 +10,6 @@ meow = True
 funny = False
 
 i = 0
-while (meow is not funny) & (i < 10):
+while (meow is not funny) and (i < 10):
     print("Meow is not funny!")
     i += 1
