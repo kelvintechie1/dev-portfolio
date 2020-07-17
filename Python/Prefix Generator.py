@@ -26,6 +26,9 @@ def inputPrefixNum():
             continue
     return prefixNum
 
+def inputOtherCriteria():
+    print("Placeholder")
+
 def GenerateIPv4Prefixes(number):
     counter = 0
     prefixes = []
@@ -47,15 +50,17 @@ def GenerateIPv4Prefixes(number):
     return prefixes
 
 def GenerateIPv6Prefixes(number):
-    print("Feature coming soon.")
+    print("Placeholder")
     # Add global unicast (2000::/3) or unique local (fc00::/7)
     
-
+def GenerateConfiguration():
+    print("Placeholder")
 
 def main():
     prefixNum = inputPrefixNum()
     for item in enumerate(prefixes := (GenerateIPv4Prefixes(prefixNum[0]))):
         print(prefixes[item[0]])
+
 
 if __name__ == "__main__":
     main()
