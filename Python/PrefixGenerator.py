@@ -43,6 +43,10 @@ def inputOtherCriteria(IPv4Num, IPv6Num):
 
     if IPv6Selected:
         IPv6Responses.append(input("Global Unicast [1] or Unique Local Addresses [2]: "))
+        if IPv6Responses[0] == "1":
+            IPv6Responses.append(input("Extended global unicast range (2000::/3) [1] or restricted range (2000::/15) [2]: "))
+        else:
+            IPv6Responses.append(None)
         IPv6Responses.append(input("Use standard (32-128) [1] or extended (1-128) [2] prefix length range: "))
         IPv6Responses.append(input("Make host address the first in the subnet [Y/N]: "))
     elif not IPv6Selected:
@@ -78,19 +82,22 @@ def GenerateIPv4Prefixes(number, private):
 
     return returnOutput
 
-def GenerateIPv6Prefixes(number, GlobalUnicast, extendedPL, firstHost):
+def GenerateIPv6Prefixes(number, GlobalUnicast, extendedPL, firstHost, restrictedGURange):
 
     counter = 0
     returnOutput = []
 
     while counter < number:
 
-        randomUInt = (random.getrandbits(128)) & 0xffffffffffffffffffffffffffffffff
+        if restrictedGURange:
+            randomUInt = int((str(random.randint(2000,2001))) + (hex((random.getrandbits(112)) & 0xffffffffffffffffffffffffffff))[2:], base=16)
+        else:
+            randomUInt = (random.getrandbits(128)) & 0xffffffffffffffffffffffffffffffff
 
         if extendedPL:
-            prefixLength = str(random.randint(1, 126))
+            prefixLength = str(random.randint(1, 128))
         if not extendedPL:
-            prefixLength = str(random.randint(32, 126))
+            prefixLength = str(random.randint(32, 128))
 
         appendValue = []
 
@@ -106,7 +113,7 @@ def GenerateIPv6Prefixes(number, GlobalUnicast, extendedPL, firstHost):
             continue
 
         if firstHost:
-            appendValue.append(prefix[1])
+            appendValue.append(prefix[0])
         elif not firstHost:
             appendValue.append(address)
         
@@ -135,13 +142,18 @@ def main():
             GlobalUnicast = False
         else:
             GlobalUnicast = True
+        
+        if options[1][1] == "2":
+            restrictedGURange = True
+        else:
+            restrictedGURange = False
 
-        if options[1][1].upper() == "2":
+        if options[1][2].upper() == "2":
             extendedPL = True
         else:
             extendedPL = False
 
-        if options[1][2].upper() == "Y":
+        if options[1][3].upper() == "Y":
             firstHost = True
         else:
             firstHost = False
@@ -156,7 +168,7 @@ def main():
         print("\n")
         print("IPv6 Networks [" + str(prefixNum[1]) + "]: \n")
         print(tabulate((IPv6CSV := GenerateIPv6Prefixes(number=prefixNum[1], GlobalUnicast=GlobalUnicast, extendedPL=extendedPL, 
-            firstHost=firstHost)), headers=["Network Prefix", "Host Address"]))
+            firstHost=firstHost, restrictedGURange=restrictedGURange)), headers=["Network Prefix", "Host Address"]))
     
     saveAsCSV = input("Do you want to save these results as a CSV file? [Y/N] ")
     if saveAsCSV.upper() == "Y":
