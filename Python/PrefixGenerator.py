@@ -3,9 +3,9 @@
 # IP Prefix Generator
 # By: Kelvin Tran
 
+from tabulate import tabulate
 import ipaddress
 import random
-from tabulate import tabulate
 import csv
 import io
 import sys
@@ -17,11 +17,19 @@ def inputPrefixNum():
     while not successful:
         try:
             prefixNum = []
-            prefixNum.append(int(input("How many IPv4 prefixes do you want to generate? ")))
-            prefixNum.append(int(input("How many IPv6 prefixes do you want to generate? ")))
+            IPv4Count = input("How many IPv4 prefixes do you want to generate? (Default: 0) ")
+            if IPv4Count == "":
+                prefixNum.append(0)
+            else:
+                prefixNum.append(int(IPv4Count))
+            IPv6Count = input("How many IPv6 prefixes do you want to generate? (Default: 0) ")
+            if IPv6Count == "":
+                prefixNum.append(0)
+            else:
+                prefixNum.append(int(IPv6Count))
             successful = True
-        except (ValueError,TypeError):
-            print("Please enter a valid number - integers only.")
+        except (ValueError,TypeError) as error:
+            print("Please enter a valid number - integers only. - Error: " + str(error))
             continue
     return prefixNum
 
@@ -38,18 +46,18 @@ def inputOtherCriteria(IPv4Num, IPv6Num):
         IPv6Selected = True
     
     if IPv4Selected:
-        IPv4Responses.append(input("Include private addresses [Y/N]: "))
+        IPv4Responses.append(input("Include private addresses [Y/N] (Default: N): "))
     elif not IPv4Selected:
         IPv4Responses = None
 
     if IPv6Selected:
-        IPv6Responses.append(input("Global Unicast [1] or Unique Local Addresses [2]: "))
+        IPv6Responses.append(input("Global Unicast [1] or Unique Local Addresses [2] (Default: 1): "))
         if IPv6Responses[0] == "1":
-            IPv6Responses.append(input("Extended global unicast range (2000::/3) [1] or restricted range (2000::/15) [2]: "))
+            IPv6Responses.append(input("Extended global unicast range (2000::/3) [1] or restricted range (2000::/15) [2] (Default: 1): "))
         else:
             IPv6Responses.append(None)
-        IPv6Responses.append(input("Use standard (32-128) [1] or extended (1-128) [2] prefix length range: "))
-        IPv6Responses.append(input("Make host address the first in the subnet [Y/N]: "))
+        IPv6Responses.append(input("Use standard (32-128) [1] or extended (1-128) [2] prefix length range (Default: 1): "))
+        IPv6Responses.append(input("Make host address the first in the subnet [Y/N] (Default: N): "))
     elif not IPv6Selected:
         IPv6Responses = None
     
@@ -171,6 +179,10 @@ def main():
         print(tabulate((IPv6CSV := GenerateIPv6Prefixes(number=prefixNum[1], GlobalUnicast=GlobalUnicast, extendedPL=extendedPL, 
             firstHost=firstHost, restrictedGURange=restrictedGURange)), headers=["Network Prefix", "Host Address"]))
     
+    if prefixNum[0] == 0 and prefixNum[1] == 0:
+        print("You provided 0 for both values. Please re-run and provide a non-zero number for one or more address families.")
+        sys.exit()
+
     saveAsCSV = input("Do you want to save these results as a CSV file? [Y/N] ")
     if saveAsCSV.upper() == "Y":
         print("WARNING: Providing a file path to a file that already exists will result in that file being overwritten.")
