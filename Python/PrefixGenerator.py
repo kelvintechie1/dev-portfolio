@@ -3,8 +3,6 @@
 # IP Prefix Generator
 # By: Kelvin Tran
 
-# Note: at the moment, only supports IPv4 prefixes - IPv6 support to be implemented
-
 import ipaddress
 import random
 from tabulate import tabulate
