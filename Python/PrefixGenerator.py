@@ -67,9 +67,9 @@ def GenerateIPv4Prefixes(number, private):
         appendValue.append(str(prefix.netmask))
         appendValue.append(str(address))
 
-        if (((private and (prefix.is_global or prefix.is_private)) or (not private and (prefix.is_global and not prefix.is_private))) 
-                and not prefix.is_multicast and not prefix.is_reserved and not prefix.is_unspecified and not prefix.is_link_local 
-                and not prefix.is_loopback):
+        if (((private and (address.is_global or address.is_private)) or (not private and (address.is_global and not address.is_private))) 
+                and not address.is_multicast and not address.is_reserved and not address.is_unspecified and not address.is_link_local 
+                and not address.is_loopback):
             returnOutput.append(appendValue)
         else:
             continue
@@ -98,9 +98,9 @@ def GenerateIPv6Prefixes(number, GlobalUnicast, extendedPL, firstHost):
             + "/" + prefixLength, strict=False))
 
         if (((GlobalUnicast and prefix.is_global)
-                or (not GlobalUnicast and prefix.is_private))
-                and not prefix.is_link_local and not prefix.is_loopback and not prefix.is_multicast
-                and not prefix.is_reserved and not prefix.is_site_local and not prefix.is_unspecified):
+                or (not GlobalUnicast and address.is_private))
+                and not address.is_link_local and not address.is_loopback and not address.is_multicast
+                and not address.is_reserved and not address.is_site_local and not address.is_unspecified):
             returnOutput.append(appendValue)
         else:
             continue
