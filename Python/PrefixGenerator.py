@@ -160,14 +160,34 @@ def main():
     
     saveAsCSV = input("Do you want to save these results as a CSV file? [Y/N] ")
     if saveAsCSV.upper() == "Y":
-        filePath = input("Provide an absolute file path including the file name and csv extension. \
-            Default: ipaddress.csv in the same folder as your script. WARNING: An error will occur \
-            if the file already exists... ")
-        if filePath is None or filePath == "":
-            filePath = "ipaddress.csv"
-        with open(filePath, 'w') as csvFile:
-            writer = csv.writer(csvFile, delimiter=",", quotechar="\"")
-            writer.writerow()
+        print("WARNING: Providing a file path to a file that already exists will result in that file being overwritten.")
+
+        IPv4filePath = input("IPv4 - Provide an absolute file path including the file name and csv extension. Default: ipv4address.csv in the same folder as your script. --- ")
+        IPv6filePath = input("IPv6 - Provide an absolute file path including the file name and csv extension. Default: ipv6address.csv in the same folder as your script. --- ")
+
+        if IPv4filePath is None or IPv4filePath == "":
+            IPv4filePath = "ipv4address.csv"
+        if IPv6filePath is None or IPv6filePath == "":
+            IPv6filePath = "ipv6address.csv"
+        
+        successful = False
+        while not successful:
+            try:
+                with open(IPv4filePath, 'w') as IPv4csvFile:
+                    writer = csv.writer(IPv4csvFile, delimiter=",", quotechar="\"")
+                    writer.writerow(["Network Prefix", "Subnet Mask", "Host Address"])
+                    for item in enumerate(IPv4CSV):
+                        writer.writerow(item[1])
+                with open(IPv6filePath, 'w') as IPv6csvFile:
+                    writer = csv.writer(IPv6csvFile, delimiter=",", quotechar="\"")
+                    writer.writerow(["Network Prefix", "Host Address"])
+                    for item in enumerate(IPv6CSV):
+                        writer.writerow(item[1])
+                successful = True
+            except IOError as error:
+                print("Error: " + error)
+                continue
+
 
 if __name__ == "__main__":
     main()
