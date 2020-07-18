@@ -6,10 +6,10 @@
 import ipaddress
 import random
 from tabulate import tabulate
+import re
 import argparse # usage coming later
 import csv # usage coming later
 import io # usage coming later
-import re # usage coming later
 
 # User inputs number of prefixes
 def inputPrefixNum():
@@ -72,11 +72,22 @@ def GenerateIPv4Prefixes(number, private):
 
         appendValue = []
 
-        appendValue.append(str(prefix := (ipaddress.IPv4Network((address := firstOctet + otherOctets[0] 
-            + otherOctets[1] + otherOctets[2]) + "/" + prefixLength, strict=False))))
-        appendValue.append(str(prefix.netmask))
-        appendValue.append(str(address))
-        returnOutput.append(appendValue)
+        prefix = (ipaddress.IPv4Network((address := firstOctet + otherOctets[0] 
+            + otherOctets[1] + otherOctets[2]) + "/" + prefixLength, strict=False))
+
+        strAddress = str(address)
+
+        privateMatched = False
+        if re.match("^10", strAddress) or re.match("^172\.((1[6-9])|(2[0-9])|(3[0-1]))", strAddress) or re.match("^192\.168", strAddress):
+            privateMatched = True
+        
+        if (not private and not privateMatched) or private:
+            appendValue.append(str(prefix))
+            appendValue.append(str(prefix.netmask))
+            appendValue.append(strAddress)
+            returnOutput.append(appendValue)
+        elif not private and privateMatched:
+            continue
 
         counter += 1
 
