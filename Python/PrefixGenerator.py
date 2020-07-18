@@ -78,7 +78,7 @@ def GenerateIPv4Prefixes(number, private):
         strAddress = str(address)
 
         privateMatched = False
-        if re.match("^10", strAddress) or re.match("^172\.((1[6-9])|(2[0-9])|(3[0-1]))", strAddress) or re.match("^192\.168", strAddress):
+        if re.match(r"^10", strAddress) or re.match(r"^172\.((1[6-9])|(2[0-9])|(3[0-1]))", strAddress) or re.match(r"^192\.168", strAddress):
             privateMatched = True
         
         if (not private and not privateMatched) or private:
