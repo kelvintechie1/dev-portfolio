@@ -179,7 +179,8 @@ def main():
     if prefixNum[0] != 0:
         print("\n")
         print("IPv4 Networks: \n")
-        print(tabulate(outputIPv4 := (GenerateIPv4Prefixes(number=prefixNum[0], private=private)), headers=["Network Prefix", "Subnet Mask", "Host Address"]))
+        print(tabulate(outputIPv4 := (GenerateIPv4Prefixes(number=prefixNum[0], private=private)), 
+            headers=["Network Prefix", "Subnet Mask", "Host Address"]))
     
     if prefixNum[1] != 0:
         print("\n")
