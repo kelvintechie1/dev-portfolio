@@ -6,7 +6,6 @@
 import ipaddress
 import random
 from tabulate import tabulate
-import re
 import argparse # usage coming later
 import csv # usage coming later
 import io # usage coming later
@@ -57,36 +56,22 @@ def GenerateIPv4Prefixes(number, private):
 
     while counter < number:
 
-        firstOctet = (str(random.randint(1, 223)) + ".")
-        otherOctets = []
-        octet = 1
-
-        while octet < 4:
-            value = str(random.randint(1,255))
-            if octet < 3:
-                value = value + "."
-            otherOctets.append(value)
-            octet += 1
+        randomUInt = (random.getrandbits(32)) & 0xffffffff
 
         prefixLength = str(random.randint(1, 32))   
 
         appendValue = []
-
-        prefix = (ipaddress.IPv4Network((address := firstOctet + otherOctets[0] 
-            + otherOctets[1] + otherOctets[2]) + "/" + prefixLength, strict=False))
-
-        strAddress = str(address)
-
-        privateMatched = False
-        if re.match(r"^10", strAddress) or re.match(r"^172\.((1[6-9])|(2[0-9])|(3[0-1]))", strAddress) or re.match(r"^192\.168", strAddress):
-            privateMatched = True
         
-        if (not private and not privateMatched) or private:
-            appendValue.append(str(prefix))
-            appendValue.append(str(prefix.netmask))
-            appendValue.append(strAddress)
+        appendValue.append(str(prefix := (ipaddress.IPv4Network(str(address := ipaddress.IPv4Address(randomUInt))
+            + "/" + prefixLength, strict=False))))
+        appendValue.append(str(prefix.netmask))
+        appendValue.append(str(address))
+
+        if (((private and (prefix.is_global or prefix.is_private)) or (not private and (prefix.is_global and not prefix.is_private))) 
+                and not prefix.is_multicast and not prefix.is_reserved and not prefix.is_unspecified and not prefix.is_link_local 
+                and not prefix.is_loopback):
             returnOutput.append(appendValue)
-        elif not private and privateMatched:
+        else:
             continue
 
         counter += 1
@@ -107,49 +92,30 @@ def GenerateIPv6Prefixes(number, GlobalUnicast, extendedPL, firstHost):
 
     while counter < number:
 
-        if GlobalUnicast:
-            range = ipaddress.IPv6Network("2000::/15")
-        elif not GlobalUnicast:
-            range = ipaddress.IPv6Network("fc00::/7")
-        
-        chooseFirstGroup = random.randint(0,1)
-        if GlobalUnicast:
-            if chooseFirstGroup == 0:
-                firstGroup = "2000:"
-            elif chooseFirstGroup == 1:
-                firstGroup = "2001:"
-        elif not GlobalUnicast:
-            if chooseFirstGroup == 0:
-                firstGroup = "FC00:"
-            elif chooseFirstGroup == 1:
-                firstGroup == "FD00:"
+        randomUInt = (random.getrandbits(128)) & 0xffffffffffffffffffffffffffffffff
 
-        otherGroups = []
-
-        groupsCounter = 1
-        while groupsCounter < 8:
-            value = str(hex(random.randint(0, 65535))[2:6])  # [2:6] in order to exclude the hex identifier (0x)
-            if groupsCounter < 7:
-                value = value + ":"
-            otherGroups.append(value)
-            groupsCounter += 1
-
-        # Feature Idea: allow custom prefix length ranges
         if extendedPL:
-            prefixLength = str(random.randint(1, 128))
+            prefixLength = str(random.randint(1, 126))
         if not extendedPL:
-            prefixLength = str(random.randint(32, 128))
+            prefixLength = str(random.randint(32, 126))
 
         appendValue = []
-        appendValue.append(ipaddress.IPv6Network((address := firstGroup + otherGroups[0] + otherGroups[1]
-            + otherGroups[2] + otherGroups[3] + otherGroups[4] + otherGroups[5] + otherGroups[6]) + "/" + prefixLength, strict=False))
-        
-        if firstHost:
-            appendValue.append(ipaddress.IPv6Address(next(appendValue[0].hosts())))
-        elif not firstHost:
-            appendValue.append(ipaddress.IPv6Address(address))
 
-        returnOutput.append(appendValue)
+        appendValue.append(prefix := ipaddress.IPv6Network(str(address := ipaddress.IPv6Address(randomUInt)) 
+            + "/" + prefixLength, strict=False))
+
+        if (((GlobalUnicast and prefix.is_global)
+                or (not GlobalUnicast and prefix.is_private))
+                and not prefix.is_link_local and not prefix.is_loopback and not prefix.is_multicast
+                and not prefix.is_reserved and not prefix.is_site_local and not prefix.is_unspecified):
+            returnOutput.append(appendValue)
+        else:
+            continue
+
+        if firstHost:
+            appendValue.append(prefix[1])
+        elif not firstHost:
+            appendValue.append(address)
         
         counter += 1
 
@@ -189,14 +155,14 @@ def main():
 
     if prefixNum[0] != 0:
         print("\n")
-        print("IPv4 Networks: \n")
-        print(tabulate(outputIPv4 := (GenerateIPv4Prefixes(number=prefixNum[0], private=private)), 
+        print("IPv4 Networks [" + str(prefixNum[0]) + "]: \n")
+        print(tabulate((GenerateIPv4Prefixes(number=prefixNum[0], private=private)), 
             headers=["Network Prefix", "Subnet Mask", "Host Address"]))
     
     if prefixNum[1] != 0:
         print("\n")
-        print("IPv6 Networks: \n")
-        print(tabulate(outputIPv6 := (GenerateIPv6Prefixes(number=prefixNum[1], GlobalUnicast=GlobalUnicast, extendedPL=extendedPL, 
+        print("IPv6 Networks [" + str(prefixNum[1]) + "]: \n")
+        print(tabulate((GenerateIPv6Prefixes(number=prefixNum[1], GlobalUnicast=GlobalUnicast, extendedPL=extendedPL, 
             firstHost=firstHost)), headers=["Network Prefix", "Host Address"]))
 
 
