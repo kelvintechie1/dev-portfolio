@@ -79,13 +79,6 @@ def GenerateIPv4Prefixes(number, private):
     return returnOutput
 
 def GenerateIPv6Prefixes(number, GlobalUnicast, extendedPL, firstHost):
-    """Note: This script assumes the validity of the IETF-estabished IPv6 unicast address assignments table 
-    found here: https://www.iana.org/assignments/ipv6-unicast-address-assignments/ipv6-unicast-address-assignments.xhtml
-    and therefore uses the 2000::/15 address block for address generation to avoid interfering with any reserved blocks,
-    such as 2002::/16 for 6to4 IPv6 transition operations."""
-
-    # Global unicast range - 2000::/15, Unique Local Range: fc00::/7
-    # Other ranges not supported at this time.
 
     counter = 0
     returnOutput = []
