@@ -6,9 +6,9 @@
 import ipaddress
 import random
 from tabulate import tabulate
+import csv
+import io
 import argparse # usage coming later
-import csv # usage coming later
-import io # usage coming later
 
 # User inputs number of prefixes
 def inputPrefixNum():
@@ -149,15 +149,25 @@ def main():
     if prefixNum[0] != 0:
         print("\n")
         print("IPv4 Networks [" + str(prefixNum[0]) + "]: \n")
-        print(tabulate((GenerateIPv4Prefixes(number=prefixNum[0], private=private)), 
+        print(tabulate((IPv4CSV := GenerateIPv4Prefixes(number=prefixNum[0], private=private)), 
             headers=["Network Prefix", "Subnet Mask", "Host Address"]))
     
     if prefixNum[1] != 0:
         print("\n")
         print("IPv6 Networks [" + str(prefixNum[1]) + "]: \n")
-        print(tabulate((GenerateIPv6Prefixes(number=prefixNum[1], GlobalUnicast=GlobalUnicast, extendedPL=extendedPL, 
+        print(tabulate((IPv6CSV := GenerateIPv6Prefixes(number=prefixNum[1], GlobalUnicast=GlobalUnicast, extendedPL=extendedPL, 
             firstHost=firstHost)), headers=["Network Prefix", "Host Address"]))
-
+    
+    saveAsCSV = input("Do you want to save these results as a CSV file? [Y/N] ")
+    if saveAsCSV.upper() == "Y":
+        filePath = input("Provide an absolute file path including the file name and csv extension. \
+            Default: ipaddress.csv in the same folder as your script. WARNING: An error will occur \
+            if the file already exists... ")
+        if filePath is None or filePath == "":
+            filePath = "ipaddress.csv"
+        with open(filePath, 'w') as csvFile:
+            writer = csv.writer(csvFile, delimiter=",", quotechar="\"")
+            writer.writerow()
 
 if __name__ == "__main__":
     main()
