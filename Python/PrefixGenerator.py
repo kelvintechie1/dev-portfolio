@@ -8,6 +8,7 @@ import random
 from tabulate import tabulate
 import csv
 import io
+import sys
 import argparse # usage coming later
 
 # User inputs number of prefixes
@@ -174,8 +175,8 @@ def main():
     if saveAsCSV.upper() == "Y":
         print("WARNING: Providing a file path to a file that already exists will result in that file being overwritten.")
 
-        IPv4filePath = input("IPv4 - Provide an absolute file path including the file name and csv extension. Default: ipv4address.csv in the same folder as your script. --- ")
-        IPv6filePath = input("IPv6 - Provide an absolute file path including the file name and csv extension. Default: ipv6address.csv in the same folder as your script. --- ")
+        IPv4filePath = input("IPv4 - Provide an ABSOLUTE file path including the file name and csv extension. Default: ipv4address.csv in the same folder as your script. --- ")
+        IPv6filePath = input("IPv6 - Provide an ABSOLUTE file path including the file name and csv extension. Default: ipv6address.csv in the same folder as your script. --- ")
 
         if IPv4filePath is None or IPv4filePath == "":
             IPv4filePath = "ipv4address.csv"
@@ -197,8 +198,8 @@ def main():
                         writer.writerow(item[1])
                 successful = True
             except IOError as error:
-                print("Error: " + error)
-                continue
+                print("Error: " + str(error))
+                sys.exit()
 
 
 if __name__ == "__main__":
