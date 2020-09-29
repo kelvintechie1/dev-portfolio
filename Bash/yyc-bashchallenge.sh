@@ -1,4 +1,3 @@
-kelvintr@kokochap-server:~/yyc$ cat checksum.sh
 #!/bin/bash
 
 # Provide the directory you want to use as an argument to this command - otherwise, the current folder will be used.
