@@ -21,7 +21,7 @@ do
 
         OUTPUT+=${CS}": "
 
-        STAT=`stat --format=%a ${i} | grep -E "7$"`
+        STAT=`stat --format=%a ${i} | grep -E "[237]$"`
 
         if (( ${STAT} -ne "" ))
         then
