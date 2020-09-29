@@ -24,7 +24,7 @@ do
 
         STAT=`stat --format=%a ${i} | grep -E "7$"`
 
-        if ((${STAT} -ne ""))
+        if (( ${STAT} -ne "" ))
         then
                 OUTPUT+="WARNING: FILE IS WORLD WRITABLE: "
         fi
