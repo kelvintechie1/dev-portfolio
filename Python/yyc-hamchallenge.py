@@ -10,9 +10,7 @@ def FileName():
     success = False
     while not success:
         # Ask user for file name
-        print("Please make sure the file with call signs is in the same directory as the directory this script " +
-              "is being run from.")
-        fileName = input("What is the name of your reference file? ")
+        fileName = input("What is the path to your reference file? ")
 
         # Open file
         try:
