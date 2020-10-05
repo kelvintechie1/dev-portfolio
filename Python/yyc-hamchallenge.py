@@ -40,7 +40,7 @@ def CallAPI(data):
     # These keys can be obtained from the MapQuest developer website
     # key = "provide your own key!"
 
-    key = "MEzHsIQa1mf7KbONXS5UgxktocANZbZ6"
+    key = "provide your own key!"
     resourceURL = "http://www.mapquestapi.com/directions/v2/route"
     URLParams = {"key":key}
 
