@@ -53,9 +53,9 @@ def CallAPI(data):
     requestsCounter = 0  # To conform with the free tier's rate limit of 10 requests/hr.
 
     for i in data:
-        if requestsCounter < 1:
+        if requestsCounter < 10:
             requestsCounter += 1
-        elif requestsCounter == 1:
+        elif requestsCounter == 10:
             break
             # remove break line and uncomment following lines to continue going after 1 hr
             # requestsCounter = 1
