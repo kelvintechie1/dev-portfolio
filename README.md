@@ -5,6 +5,7 @@ Inside this repository, portions of my portfolio for professional demonstration 
 Please do not hesitate to reach out if you have any questions.
 
 Thank you!
+
 Kelvin Tran
 
 --
