@@ -8,13 +8,12 @@
 # Change in "directories" variable if your files are stored in other places (hint: use Linux "find" command to find YAML files)
 
 # Import necessary libraries
-import yaml
+import yaml # You may have to install PyYAML from the root user using the command "pip3 install --user pyyaml" - installing from sysadmin user fails unless sudo'd
 import subprocess
 
 
 def main():
-
-    # Confirm that script is being run as root
+    # Confirm that script is being run as root or a user with write-level permissions to the folders listed above
     print("Make sure this script is running as the root user (\"sudo /bin/bash\").")
     input("Press enter to confirm that this script is running as root. Otherwise, exit the script and re-run as root.")
 
@@ -54,7 +53,43 @@ def main():
                 print("Successfully written to file", (i[1] + j), "...")
 
 
-if __name__ == "__main__":
-    main()
-    print("Make sure to restart your CML2 controller for these changes to take effect. Run \"shutdown -r now\" at the CLI to restart immediately.")
+def ChangeOthers():
+    # Name of device scheme (w/out ".yaml")
+    devices = ["unmanaged_switch", "external_connector", "server"]
+    # Directory containing the files
+    directory = ["/var/local/virl2/.local/lib/python3.6/site-packages/simple_core/sample/"]
+    # Directory to back-up original YAML files to
+    backupDir = "/home/sysadmin/backupDir/ChangeOthers"
+    # Name of YAML files (device scheme + ".yaml")
+    yamlNames = []
+    for yamlItem in enumerate(devices):
+        yamlNames.append(yamlItem[1] + ".yaml")
 
+    for i in enumerate(directory):
+        subprocess.call(["mkdir", "-p", backupDir])
+        for j in yamlNames:
+            subprocess.call(["cp", "-Rf", (i[1] + j), backupDir])
+            try:
+                with open((i[1] + j), 'r') as readFile:
+                    temp = yaml.load(readFile, Loader=yaml.FullLoader)
+                    print("Successfully read from file", (i[1] + j), "...")
+            except FileNotFoundError as e:
+                print(e)
+                continue
+
+            temp["general"]["read_only"] = False
+
+            with open((i[1] + j), 'w') as writeFile:
+                yaml.dump(temp, writeFile)
+                print("Successfully written to file", (i[1] + j), "...")
+
+
+if __name__ == "__main__":
+    # Make modifications to main nodes (i.e. IOSv, CSR1000v, IOS XRv 9000, etc.) - Comment out if you don't want this.
+    #main()
+
+    # Note that the Server, Unmanaged Switch, and External Connector nodes remain unchanged with this script by default.
+    # Uncomment the following line if you want those changed as well:
+    ChangeOthers()
+
+    print("Make sure to restart your CML2 controller for these changes to take effect. Run \"shutdown -r now\" at the CLI to restart immediately.")
