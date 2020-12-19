@@ -55,9 +55,7 @@ def GenerateMAC(address):
         for i in range(len(lastThreeOctets := (str(address).split('.')[1:4]))):
             lastThreeOctets[i] = int(lastThreeOctets[i])
 
-        if lastThreeOctets[0] < 128:
-            lastThreeOctets[0] += 128
-        elif lastThreeOctets[0] >= 128:
+        if lastThreeOctets[0] >= 128:
             lastThreeOctets[0] -= 128
 
         for i in lastThreeOctets:
@@ -66,8 +64,7 @@ def GenerateMAC(address):
 
     elif bool(re.match(r'.*IPv6Address.*', addressType)):
         returnString += "33:33:"
-
-        for i in range(len(lastTwoQuartets := (str(address).split(':')[6:8]))):
+        for i in range(len(lastTwoQuartets := (str(address.exploded).split(':')[6:8]))):
             returnString += lastTwoQuartets[i][0:2] + ":" + lastTwoQuartets[i][2:4] + ":"
 
     return returnString[:17].upper()
@@ -77,16 +74,16 @@ def CheckAnswer(mac, address):
     correctStatus = None
     while correctStatus is None:
         print("Answer in XX:XX:XX:XX:XX:XX format:")
-        answer = input("What is the MAC address for " + str(address) + "? ")
+        answer = input("What is the MAC address for " + str(address) + "? You may type 'pass' if you don't know. ")
 
-        if not bool(re.match(r'([A-Fa-f0-9]{2}:){5}([A-Fa-f0-9]{2})', answer)):
+        if not bool(re.match(r'(([A-Fa-f0-9]{2}:){5}([A-Fa-f0-9]{2}))|[Pp][Aa][Ss][Ss]', answer)):
             print("Please enter the answer in the proper MAC address format.")
             continue
 
         if answer.upper() == mac:
             print("You are correct!")
             correctStatus = True
-        elif answer.upper() != mac:
+        elif (answer.upper() != mac) or answer.lower() == "pass":
             print("You are incorrect.")
             correctStatus = False
         print("The MAC address for", address, "is", mac)
@@ -108,15 +105,14 @@ def main():
         total = ChooseTotal()
     for i in range(total):
         addresses = GenerateAddress(mode, mcastv4, mcastv6)
-        for j in addresses:
-            MACAddress = GenerateMAC(addresses[j])
-            correctStatus = CheckAnswer(MACAddress, addresses[j])
-            if correctStatus:
-                score += 1
+        j = random.choice(list(addresses.keys()))
+        MACAddress = GenerateMAC(addresses[j])
+        correctStatus = CheckAnswer(MACAddress, addresses[j])
+        if correctStatus:
+            score += 1
 
     print("Your score is", str(score), "out of", str(total) + ":", str(int((score / total) * 100)) + "%")
 
 
 if __name__ == "__main__":
     main()
-
