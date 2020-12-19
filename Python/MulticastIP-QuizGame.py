@@ -96,7 +96,7 @@ def CheckAnswer(mac, address):
 
 def main():
     # Select mode for game - Default: 0, ask on startup
-    mode = 2
+    mode = 0
     # Select mode for game - Default: 0, ask on startup
     total = 0
 
