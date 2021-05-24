@@ -45,11 +45,11 @@ $successfulRoutes = 0
 foreach ($route in $bgpRoutes) { 
     $addCustomRoute = Add-BgpCustomRoute -Network $route -PassThru
     $addCustomRoute = 1
-    if ($null -ne $addCustomRoute) {
+    if (($null -ne $addCustomRoute) -and (($addCustomRoute).Network -contains $route)) {
         Write-Host $route successfully added as a BGP custom route!
         $successfulRoutes += 1 
     }
-    elseif ($null -eq $addCustomRoute) {
+    elseif (($null -eq $addCustomRoute) -or (($addCustomRoute).Network -notcontains $route)) {
         Write-Host $route failed to be added as a BGP custom route! 
         Continue
     }
