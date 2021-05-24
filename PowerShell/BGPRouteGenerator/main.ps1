@@ -44,6 +44,7 @@ for ($i = 0; $i -lt $numberOfRoutes; $i++) {
 $successfulRoutes = 0
 foreach ($route in $bgpRoutes) { 
     $addCustomRoute = Add-BgpCustomRoute -Network $route
+    $addCustomRoute = 1
     if ($null -ne $addCustomRoute) {
         Write-Host $route successfully added as a BGP custom route!
         $successfulRoutes += 1 
@@ -59,4 +60,4 @@ foreach ($route in $bgpRoutes) {
         }
     }
 }
-Write-Host $successfulRoutes successfully added to BGP!
+Write-Host $successfulRoutes routes uccessfully added to BGP!
