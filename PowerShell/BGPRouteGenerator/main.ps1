@@ -56,6 +56,7 @@ foreach ($route in $bgpRoutes) {
         $prependAmount = Get-Random -Minimum $minimumPrepend -Maximum $maximumPrepend
         if ($prependAmount -ne 0) {
             Add-BgpRoutingPolicy -Name $route -MatchPrefix $route -PolicyType ModifyAttribute -AddCommunity ("65001:10" + $prependAmount.ToString())
+            Add-BgpRoutingPolicyForPeer -Name $route -Direction Egress
         }
     }
 }
