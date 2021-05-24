@@ -9,7 +9,7 @@ $bgpRoutes = @()
 # Create operational variables - comments after each to indicate their purpose
 $numberOfRoutes = 10 # Determines number of routes to generate
 $minimumPrepend = 0 # Determines minimum number of ASNs to prepend in AS-PATH
-$maximumPrepend = 0 # Determines maximum number of ASNs to prepend in AS-PATH
+$maximumPrepend = 5 # Determines maximum number of ASNs to prepend in AS-PATH
 $includeZero = $false # Determine whether to include 0.0.0.0/<prefixLength> prefixes or not (i.e. 0.0.0.0/1)
 $minimumPLength = 8 # Determines minimum prefix length (recommended: at least 8, especially if includeZero is False, increase from 0 for default-free BGP route generation)
 $maximumPLength = 32 # Determines maximum prefix length (recommended: 32, lower if you want host address-free advertisements)
@@ -43,5 +43,8 @@ for ($i = 0; $i -lt $numberOfRoutes; $i++) {
 
 $bgpRoutes | ForEach-Object { 
     Add-BgpCustomRoute -Network $_
+    if ((($minimumPrepend -ne 0) -and ($maximumPrepend -ne 0)) -and ($minimumPrepend -le $maximumPrepend)) {
+        Add-BgpRoutingPolicy -MatchPrefix $_ -PolicyType ModifyAttribute -AddCommunity ("Append" + (Get-Random -Minimum $minimumPrepend -Maximum $maximumPrepend))
+    }
     Write-Host $_ successfully added as a BGP custom route! 
 }
