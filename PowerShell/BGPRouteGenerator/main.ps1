@@ -42,10 +42,11 @@ for ($i = 0; $i -lt $numberOfRoutes; $i++) {
 }
 
 $successfulRoutes = 0
-$bgpRoutes | ForEach-Object { 
-    $addCustomRoute = Add-BgpCustomRoute -Network $_
+foreach ($route in $bgpRoutes) { 
+    $addCustomRoute = Add-BgpCustomRoute -Network $route
     if ($addCustomRoute -ne $null) {
-        Write-Host $_ successfully added as a BGP custom route! 
+        Write-Host $_ successfully added as a BGP custom route!
+        $successfulRoutes += 1 
     }
     elseif ($addCustomRoute -eq $null) {
         Write-Host $_ failed to be added as a BGP custom route! 
@@ -54,7 +55,8 @@ $bgpRoutes | ForEach-Object {
     if ((($minimumPrepend -ne 0) -and ($maximumPrepend -ne 0)) -and ($minimumPrepend -le $maximumPrepend)) {
         $prependAmount = Get-Random -Minimum $minimumPrepend -Maximum $maximumPrepend
         if ($prependAmount -ne 0) {
-            Add-BgpRoutingPolicy -MatchPrefix $_ -PolicyType ModifyAttribute -AddCommunity ("Append" + $prependAmount.ToString())
+            Add-BgpRoutingPolicy -MatchPrefix $route -PolicyType ModifyAttribute -AddCommunity ("Append" + $prependAmount.ToString())
         }
     }
 }
+Write-Host $successfulRoutes successfully added to BGP!
