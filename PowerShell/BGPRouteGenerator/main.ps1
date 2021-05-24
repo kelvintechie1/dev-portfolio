@@ -7,7 +7,7 @@
 $bgpRoutes = @()
 
 # Create operational variables - comments after each to indicate their purpose
-$numberOfRoutes = 10 # Determines number of routes to generate
+$numberOfRoutes = 2 # Determines number of routes to generate
 $minimumPrepend = 0 # Determines minimum number of ASNs to prepend in AS-PATH
 $maximumPrepend = 0 # Determines maximum number of ASNs to prepend in AS-PATH
 $includeZero = $false # Determine whether to include 0.0.0.0/<prefixLength> prefixes or not (i.e. 0.0.0.0/1)
@@ -17,7 +17,6 @@ $maximumPLength = 32 # Determines maximum prefix length (recommended: 32, lower 
 
 # Generate random prefixes between 0.0.0.0 or 1.0.0.0 and 223.255.255.255, with a prefix length between /8 and /32
 for ($i = 0; $i -lt $numberOfRoutes; $i++) {
-    $decimalPrefix = 0
     if ($includeZero -eq $true) {
         $decimalPrefix = Get-Random -Minimum 0 -Maximum 3758096383
     }
@@ -25,11 +24,24 @@ for ($i = 0; $i -lt $numberOfRoutes; $i++) {
         $decimalPrefix = Get-Random -Minimum 16777216 -Maximum 3758096383
     }
     $PL = Get-Random -Minimum $minimumPLength -Maximum $maximumPLength
-    $prefix = (New-Object System.Net.IPAddress($decimalPrefix)).ToString()
-    $bgpRoutes = $bgpRoutes + ($prefix + "/" + $PL.ToString())
+
+    for ($j = 0; $j -lt $PL; $j++) {
+        $decimalPL += [Math]::Pow(2, 31 - $j)
+    }
+
+    $network = (New-Object System.Net.IPAddress($decimalPrefix -band $decimalPL)).ToString()
+    $networkParts = $network.Split(".")
+    $finalNetwork = $null
+    for ($k = $networkParts.Length - 1; $k -ge 0 ; $k--) {
+        $finalNetwork += $networkParts[$k]
+        if ($k -ne 0) {
+            $finalNetwork += "."
+        }
+    }
+    $bgpRoutes += ($finalNetwork + "/" + $PL)
 }
 
 $bgpRoutes | ForEach-Object { 
-    Add-BgpCustomRoute -Network $_
+    # Add-BgpCustomRoute -Network $_
     Write-Host $_ successfully added as a BGP custom route! 
 }
