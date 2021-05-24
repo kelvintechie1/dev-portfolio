@@ -60,4 +60,4 @@ foreach ($route in $bgpRoutes) {
         }
     }
 }
-Write-Host $successfulRoutes routes uccessfully added to BGP!
+Write-Host $successfulRoutes routes successfully added to BGP!
