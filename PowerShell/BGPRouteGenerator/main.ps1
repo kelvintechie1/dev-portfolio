@@ -8,7 +8,7 @@ $bgpRoutes = @()
 
 # Create operational variables - comments after each to indicate their purpose
 $numberOfRoutes = 10 # Determines number of routes to generate
-$minimumPrepend = 0 # Determines minimum number of ASNs to prepend in AS-PATH
+$minimumPrepend = 1 # Determines minimum number of ASNs to prepend in AS-PATH
 $maximumPrepend = 5 # Determines maximum number of ASNs to prepend in AS-PATH
 $includeZero = $false # Determine whether to include 0.0.0.0/<prefixLength> prefixes or not (i.e. 0.0.0.0/1)
 $minimumPLength = 8 # Determines minimum prefix length (recommended: at least 8, especially if includeZero is False, increase from 0 for default-free BGP route generation)
@@ -43,7 +43,7 @@ for ($i = 0; $i -lt $numberOfRoutes; $i++) {
 
 $successfulRoutes = 0
 foreach ($route in $bgpRoutes) { 
-    $addCustomRoute = Add-BgpCustomRoute -Network $route
+    $addCustomRoute = Add-BgpCustomRoute -Network $route -PassThru
     $addCustomRoute = 1
     if ($null -ne $addCustomRoute) {
         Write-Host $route successfully added as a BGP custom route!
@@ -56,7 +56,7 @@ foreach ($route in $bgpRoutes) {
     if ((($minimumPrepend -ne 0) -and ($maximumPrepend -ne 0)) -and ($minimumPrepend -le $maximumPrepend)) {
         $prependAmount = Get-Random -Minimum $minimumPrepend -Maximum $maximumPrepend
         if ($prependAmount -ne 0) {
-            Add-BgpRoutingPolicy -MatchPrefix $route -PolicyType ModifyAttribute -AddCommunity ("Append" + $prependAmount.ToString())
+            Add-BgpRoutingPolicy -MatchPrefix $route -PolicyType ModifyAttribute -AddCommunity ("65001:10" + $prependAmount.ToString())
         }
     }
 }
