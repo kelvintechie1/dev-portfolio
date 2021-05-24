@@ -7,7 +7,7 @@
 $bgpRoutes = @()
 
 # Create operational variables - comments after each to indicate their purpose
-$numberOfRoutes = 2 # Determines number of routes to generate
+$numberOfRoutes = 10 # Determines number of routes to generate
 $minimumPrepend = 0 # Determines minimum number of ASNs to prepend in AS-PATH
 $maximumPrepend = 0 # Determines maximum number of ASNs to prepend in AS-PATH
 $includeZero = $false # Determine whether to include 0.0.0.0/<prefixLength> prefixes or not (i.e. 0.0.0.0/1)
@@ -42,6 +42,6 @@ for ($i = 0; $i -lt $numberOfRoutes; $i++) {
 }
 
 $bgpRoutes | ForEach-Object { 
-    # Add-BgpCustomRoute -Network $_
+    Add-BgpCustomRoute -Network $_
     Write-Host $_ successfully added as a BGP custom route! 
 }
