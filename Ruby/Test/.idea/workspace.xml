@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0680bcc0-62e0-4a79-9111-5961adaa37cb" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Ruby File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1eZZj0J5xrk6VhZDfhJs0SqyD7X" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="HelloWorld" type="RubyRunConfigurationType" factoryName="Ruby" temporary="true">
+      <module name="Test" />
+      <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/HelloWorld.rb" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Ruby.HelloWorld" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpringUtil" SPRING_PRE_LOADER_OPTION="true" RAKE_SPRING_PRE_LOADER_OPTION="true" RAILS_SPRING_PRE_LOADER_OPTION="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0680bcc0-62e0-4a79-9111-5961adaa37cb" name="Default Changelist" comment="" />
+      <created>1594531206319</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594531206319</updated>
+      <workItem from="1594531209514" duration="416000" />
+      <workItem from="1594939367561" duration="201000" />
+      <workItem from="1595009136314" duration="139000" />
+      <workItem from="1595186270578" duration="165000" />
+      <workItem from="1595211883068" duration="127000" />
+      <workItem from="1595288466001" duration="115000" />
+      <workItem from="1595531102589" duration="227000" />
+      <workItem from="1595561179371" duration="303000" />
+      <workItem from="1595832169854" duration="161000" />
+      <workItem from="1595976004795" duration="154000" />
+      <workItem from="1596040622932" duration="181000" />
+      <workItem from="1596124783183" duration="233000" />
+      <workItem from="1596385751688" duration="136000" />
+      <workItem from="1596476458195" duration="212000" />
+      <workItem from="1596672815642" duration="589000" />
+      <workItem from="1596801135891" duration="238000" />
+      <workItem from="1596905042160" duration="169000" />
+      <workItem from="1596939456008" duration="361000" />
+      <workItem from="1597698757500" duration="96000" />
+      <workItem from="1598984306090" duration="347000" />
+      <workItem from="1599509628817" duration="239000" />
+      <workItem from="1604731590177" duration="574000" />
+      <workItem from="1604768956551" duration="218000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1358" height="271" key="GridCell.Tab.0.bottom" timestamp="1604732173756">
+      <screen x="0" y="23" width="3200" height="1713" />
+    </state>
+    <state width="1358" height="271" key="GridCell.Tab.0.bottom/0.23.3200.1713/3200.23.1920.1057@0.23.3200.1713" timestamp="1604732173756" />
+    <state width="1358" height="271" key="GridCell.Tab.0.center" timestamp="1604732173755">
+      <screen x="0" y="23" width="3200" height="1713" />
+    </state>
+    <state width="1358" height="271" key="GridCell.Tab.0.center/0.23.3200.1713/3200.23.1920.1057@0.23.3200.1713" timestamp="1604732173755" />
+    <state width="1358" height="271" key="GridCell.Tab.0.left" timestamp="1604732173755">
+      <screen x="0" y="23" width="3200" height="1713" />
+    </state>
+    <state width="1358" height="271" key="GridCell.Tab.0.left/0.23.3200.1713/3200.23.1920.1057@0.23.3200.1713" timestamp="1604732173755" />
+    <state width="1358" height="271" key="GridCell.Tab.0.right" timestamp="1604732173756">
+      <screen x="0" y="23" width="3200" height="1713" />
+    </state>
+    <state width="1358" height="271" key="GridCell.Tab.0.right/0.23.3200.1713/3200.23.1920.1057@0.23.3200.1713" timestamp="1604732173756" />
+    <state x="1101" y="518" key="SettingsEditor" timestamp="1604731717462">
+      <screen x="0" y="23" width="3200" height="1713" />
+    </state>
+    <state x="1101" y="518" key="SettingsEditor/0.23.3200.1713/3200.23.1920.1057@0.23.3200.1713" timestamp="1604731717462" />
+    <state x="1265" y="600" width="670" height="676" key="search.everywhere.popup" timestamp="1604732168812">
+      <screen x="0" y="23" width="3200" height="1713" />
+    </state>
+    <state x="1265" y="600" width="670" height="676" key="search.everywhere.popup/0.23.3200.1713/3200.23.1920.1057@0.23.3200.1713" timestamp="1604732168812" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Test@HelloWorld.rcov" NAME="HelloWorld Coverage Results" MODIFIED="1604732173728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Test" />
+  </component>
+</project>

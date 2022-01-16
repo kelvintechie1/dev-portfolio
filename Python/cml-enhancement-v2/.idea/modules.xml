@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../IDE Files/PycharmProjects/Cisco/.idea/Cisco.iml" filepath="$PROJECT_DIR$/../IDE Files/PycharmProjects/Cisco/.idea/Cisco.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../IDE Files/PycharmProjects/DevNet-Associate/.idea/DevNet-Associate.iml" filepath="$PROJECT_DIR$/../IDE Files/PycharmProjects/DevNet-Associate/.idea/DevNet-Associate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../IDE Files/PycharmProjects/KeithDemo/.idea/KeithDemo.iml" filepath="$PROJECT_DIR$/../IDE Files/PycharmProjects/KeithDemo/.idea/KeithDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../IDE Files/PycharmProjects/LearningProjects/.idea/LearningProjects.iml" filepath="$PROJECT_DIR$/../IDE Files/PycharmProjects/LearningProjects/.idea/LearningProjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../IDE Files/PycharmProjects/Miscellaneous/.idea/Miscellaneous.iml" filepath="$PROJECT_DIR$/../IDE Files/PycharmProjects/Miscellaneous/.idea/Miscellaneous.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../IDE Files/PycharmProjects/TestProj/.idea/TestProj.iml" filepath="$PROJECT_DIR$/../IDE Files/PycharmProjects/TestProj/.idea/TestProj.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../IDE Files/PycharmProjects/VMware/.idea/VMware-Automation.iml" filepath="$PROJECT_DIR$/../IDE Files/PycharmProjects/VMware/.idea/VMware-Automation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/breakout-v2.iml" filepath="$PROJECT_DIR$/.idea/breakout-v2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../breakoutfiles/.idea/breakoutfiles.iml" filepath="$PROJECT_DIR$/../breakoutfiles/.idea/breakoutfiles.iml" />
+    </modules>
+  </component>
+</project>

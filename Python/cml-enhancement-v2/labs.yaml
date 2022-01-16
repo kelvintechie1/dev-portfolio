@@ -1,0 +1,181 @@
+fc8167:
+  enabled: true
+  lab_description: ''
+  lab_title: Unified MPLS
+  nodes:
+    n0:
+      devices:
+      - enabled: true
+        listen_port: 9000
+        name: serial0
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9001
+        name: serial1
+        running: false
+        status: ''
+      label: CE-1
+    n1:
+      devices:
+      - enabled: true
+        listen_port: 9002
+        name: serial0
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9003
+        name: serial1
+        running: false
+        status: ''
+      label: CE-2
+    n10:
+      devices:
+      - enabled: true
+        listen_port: 9022
+        name: serial0
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9023
+        name: serial1
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9024
+        name: serial2
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9025
+        name: serial3
+        running: false
+        status: ''
+      label: PE-3
+    n11:
+      devices:
+      - enabled: true
+        listen_port: 9026
+        name: serial0
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9027
+        name: serial1
+        running: false
+        status: ''
+      label: PE-4
+    n2:
+      devices:
+      - enabled: true
+        listen_port: 9004
+        name: serial0
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9005
+        name: serial1
+        running: false
+        status: ''
+      label: PE-1
+    n3:
+      devices:
+      - enabled: true
+        listen_port: 9006
+        name: serial0
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9007
+        name: serial1
+        running: false
+        status: ''
+      label: PE-2
+    n4:
+      devices:
+      - enabled: true
+        listen_port: 9008
+        name: serial0
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9009
+        name: serial1
+        running: false
+        status: ''
+      label: ASBR-1
+    n5:
+      devices:
+      - enabled: true
+        listen_port: 9010
+        name: serial0
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9011
+        name: serial1
+        running: false
+        status: ''
+      label: P-1
+    n6:
+      devices:
+      - enabled: true
+        listen_port: 9012
+        name: serial0
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9013
+        name: serial1
+        running: false
+        status: ''
+      label: P-2
+    n7:
+      devices:
+      - enabled: true
+        listen_port: 9014
+        name: serial0
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9015
+        name: serial1
+        running: false
+        status: ''
+      label: P-3
+    n8:
+      devices:
+      - enabled: true
+        listen_port: 9016
+        name: serial0
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9017
+        name: serial1
+        running: false
+        status: ''
+      label: P-4
+    n9:
+      devices:
+      - enabled: true
+        listen_port: 9018
+        name: serial0
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9019
+        name: serial1
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9020
+        name: serial2
+        running: false
+        status: ''
+      - enabled: false
+        listen_port: 9021
+        name: serial3
+        running: false
+        status: ''
+      label: ASBR-2

@@ -1,0 +1,21 @@
+20 20
+xxxxxxxxxxxxxxxxxxxx
+x-----xxxxxxxx-----x
+x-----xxxxxxxx-----x
+x-----xxxxxxxx-----x
+x-----xxxxxxxx-----x
+x-----xxxxxxxx-----x
+x-----xxxxxxxx-----x
+x------------------x
+x------xxxx------xxx
+x---xxxxxxxxxxxx---x
+x---xxxxxxxxxxxx---x
+x---xxxxxxxxxxxx---x
+x---xxxxxxxxxxxx---x
+x---xxxxxxxxxxxx---x
+x---xxxxxxxxxxxx---x
+x---xxxxxxxxxxxx---x
+x---xxxxxxxxxxxx---x
+x------xxxxxx------x
+x------------------x
+xxxxxxxxxxxxxxxxxxxx

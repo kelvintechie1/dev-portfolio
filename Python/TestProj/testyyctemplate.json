@@ -1,0 +1,29 @@
+{
+    "Notes": [
+        {
+            "front":"FRONT1",
+            "back":"REV1",
+          
+            "front_reverse":"FRONT_REV1",
+            "back_reverse":"BACK_REV1",
+          
+            "reference":"REFERENCE",
+            "tags":[
+              "comma-delimited", "list of tags"
+            ]
+        },
+        {
+            "front":"FRONT2",
+            "back":"REV2",
+          
+            "front_reverse":"FRONT_REV2",
+            "back_reverse":"BACK_REV2",
+          
+            "reference":"REFERENCE2",
+            "tags":[
+              "1", "2"
+            ]
+        }        
+    ]
+  }
+  

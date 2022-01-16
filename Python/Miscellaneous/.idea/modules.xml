@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Cisco/.idea/Cisco.iml" filepath="$PROJECT_DIR$/../Cisco/.idea/Cisco.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Cisco Modeling Labs/.idea/Cisco Modeling Labs.iml" filepath="$PROJECT_DIR$/../Cisco Modeling Labs/.idea/Cisco Modeling Labs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../LearningProjects/.idea/LearningProjects.iml" filepath="$PROJECT_DIR$/../LearningProjects/.idea/LearningProjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Miscellaneous.iml" filepath="$PROJECT_DIR$/.idea/Miscellaneous.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../TestNetworking/.idea/TestNetworking.iml" filepath="$PROJECT_DIR$/../TestNetworking/.idea/TestNetworking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../VMware-Automation/.idea/VMware-Automation.iml" filepath="$PROJECT_DIR$/../VMware-Automation/.idea/VMware-Automation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../WebEx/.idea/WebEx.iml" filepath="$PROJECT_DIR$/../WebEx/.idea/WebEx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../vSphere/.idea/vSphere.iml" filepath="$PROJECT_DIR$/../vSphere/.idea/vSphere.iml" />
+    </modules>
+  </component>
+</project>
