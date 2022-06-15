@@ -10,11 +10,12 @@ cardinalInputs = {}
 # exit program with code 255 (unknown)
 try:
     numberOfCardinals = int(input("How many cardinal directions are you providing? "))
-    if numberOfCardinals < 2:
+    if numberOfCardinals < 2 or numberOfCardinals > len(cardinalDirections):
         raise ValueError
 except ValueError:
     print("Invalid number of cardinals.",
-          "You must use numeric characters to represent a value of 2 or more cardinal directions.")
+          f"You must use numeric characters to represent a value of between 2 and {len(cardinalDirections)}",
+          "cardinal directions.")
     exit(-1)
 
 # Provide user instructions for inputting cardinal directions
