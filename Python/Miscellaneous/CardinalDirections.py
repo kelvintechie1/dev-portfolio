@@ -44,7 +44,7 @@ if sortedCardinalIndices[-1] + (len(sortedCardinalIndices) - 1) == sortedCardina
 
 # If above check is False, then find out whether the list wraps around from the last item by checking for whether
 # the index for the last item AND the index for the first item are part of the indices of the user input(s).
-if {(len(cardinalDirections) - 1), 0}.issubset(set(sortedCardinalIndices)):
+elif {(len(cardinalDirections) - 1), 0}.issubset(set(sortedCardinalIndices)):
     # If the list wraps around, then the values are only adjacent if the number that is two less than the total number
     # of indices is either the second highest value or produces the second lowest value when subtracted from the
     # highest value.
@@ -58,5 +58,3 @@ if adjacentFlag:
     print(f"The cardinal directions provided {tuple(cardinalInputs.keys())} are adjacent.")
 elif not adjacentFlag:
     print(f"The cardinal directions provided {tuple(cardinalInputs.keys())} are not adjacent.")
-
-
